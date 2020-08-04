@@ -55,7 +55,7 @@ class Person extends React.Component {
         const {name, age, gender, experience, education, englishLevel, position, salary} = this.state;
 
         return (
-            <div className="container-fluid w-75">
+            <div className="container-fluid w-50">
                 <h2>Person page</h2>
 
                 <Form onSubmit={this.handleSubmit.bind(this)}>
@@ -76,22 +76,6 @@ class Person extends React.Component {
                                 {renderSelectOptions(GENDERS)}
                             </Form.Control>
                         </Form.Group>
-                        {/* <div>
-                            <label>Name</label>
-                            <input type="text" name="name" value={name} onChange={this.handleInputChange.bind(this)} />
-                        </div> */}
-                        {/* <div>
-                            <label>Age</label>
-                            <select name="age" value={age} onChange={this.handleInputChange.bind(this)}>
-                                {renderSelectOptions(AGES)}
-                            </select>
-                        </div> */}
-                        {/* <div>
-                            <label>Gender</label>
-                            <select name="gender" value={gender} onChange={this.handleInputChange.bind(this)}>
-                                {renderSelectOptions(GENDERS)}
-                            </select>
-                        </div> */}
                     </Form.Row>
                     <Form.Row>
                         <Form.Group as={Col} >
@@ -99,20 +83,12 @@ class Person extends React.Component {
                             <Form.Control type="number" name="experience" value={experience} onChange={this.handleInputChange.bind(this)} />
                         </Form.Group>
                     </Form.Row>
-                    {/* <div>
-                        <label>Experience</label>
-                        <input type="number" name="experience" value={experience} onChange={this.handleInputChange.bind(this)} />
-                    </div> */}
                     <Form.Row>
                         <Form.Group as={Col} >
                             <Form.Label>Salary</Form.Label>
                             <Form.Control type="number" name="salary" value={salary} onChange={this.handleInputChange.bind(this)} />
                         </Form.Group>
                     </Form.Row>
-                    {/* <div>
-                        <label>Salary</label>
-                        <input type="number" name="salary" value={salary} onChange={this.handleInputChange.bind(this)} />
-                    </div> */}
                     <Form.Row>
                         <Form.Group as={Col}>
                             <Form.Label>Education</Form.Label>
@@ -133,28 +109,9 @@ class Person extends React.Component {
                             </Form.Control>
                         </Form.Group>
                     </Form.Row>
-                    {/* <div>
-                        <label>Education</label>
-                        <select name="education" value={education} onChange={this.handleInputChange.bind(this)}>
-                            {renderSelectOptions(EDUCATIONS)}
-                        </select>
-                    </div> */}
-                    {/* <div>
-                        <label>English level</label>
-                        <select name="englishLevel" value={englishLevel} onChange={this.handleInputChange.bind(this)}>
-                            {renderSelectOptions(ENGLISH_LEVELS)}
-                        </select>
-                    </div>
-                    <div>
-                        <label>Position</label>
-                        <select name="position" value={position} onChange={this.handleInputChange.bind(this)}>
-                            {renderSelectOptions(POSITIONS)}
-                        </select>
-                    </div> */}
                     <Button variant="primary" type="submit" value="Submit">
                         Submit
                     </Button>
-                    {/* <input type="submit" value="Submit" /> */}
                 </Form>
             </div>
         )

@@ -81,7 +81,7 @@ class Statistics extends React.Component {
         return (
             <div>
                 Statistics page
-                <div>{this.renderData()}</div>
+                {/* <div>{this.renderData()}</div> */}
                 <div style={{ width: 500, margin: 'auto'}}>
                     <VictoryPie data={englishLevelsData}/>
                     <VictoryChart domainPadding={10}>
