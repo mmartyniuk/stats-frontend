@@ -22,8 +22,8 @@ export const GENDERS = [
 
 export const EDUCATIONS = [
     {
-        value: "hight", 
-        text: "Hight"
+        value: "high", 
+        text: "High"
     },
     {
         value: "secondary", 

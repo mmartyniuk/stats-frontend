@@ -8,18 +8,19 @@ import {
     Link
 } from 'react-router-dom';
 import '../styles/app.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
     <div className="App">
         <Router>
             <div>
-                <ul>
+                <ul className="list-unstyled">
                     <li>
-                        <Link to="/">Statistics</Link>
+                        <Link  class="badge badge-success my-2 w-25" to="/"><h1 class="h3">Statistics</h1></Link>
                     </li>
                     <li>
-                        <Link to="/form">Form</Link>
+                        <Link class="badge badge-warning my-2 w-25" to="/form"><h1 class="h3">Form</h1></Link>
                     </li>
                 </ul>
                 <hr />
