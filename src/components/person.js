@@ -2,7 +2,8 @@ import React from 'react';
 import { pick } from 'lodash';
 import { axiosInstance } from '../config/axios-instance';
 import { AGES, GENDERS, EDUCATIONS, ENGLISH_LEVELS, POSITIONS } from '../constants';
-import { Form, Col, Button } from 'react-bootstrap';
+import { Col, Button, Form as Form1 } from 'react-bootstrap';
+import { Form, Field } from 'react-final-form';
 
 const renderSelectOptions = (data) => data.map(({value, text}) => (<option key={value} value={value}>{text}</option>));
 
@@ -55,65 +56,141 @@ class Person extends React.Component {
         const {name, age, gender, experience, education, englishLevel, position, salary} = this.state;
 
         return (
-            <div className="container-fluid w-50">
-                <h2>Person page</h2>
-
-                <Form onSubmit={this.handleSubmit.bind(this)}>
-                    <Form.Row>
-                        <Form.Group as={Col} >
-                            <Form.Label>Name</Form.Label>
-                            <Form.Control type="text" name="name" value={name} placeholder="Enter name" onChange={this.handleInputChange.bind(this)} />
-                        </Form.Group>
-                        <Form.Group as={Col} >
-                            <Form.Label>Age</Form.Label>
-                            <Form.Control as="select" name="age" value={age} onChange={this.handleInputChange.bind(this)} >
-                                {renderSelectOptions(AGES)}
-                            </Form.Control>
-                        </Form.Group>
-                        <Form.Group as={Col} >
-                            <Form.Label>Gender</Form.Label>
-                            <Form.Control as="select" name="gender" value={gender} onChange={this.handleInputChange.bind(this)} >
-                                {renderSelectOptions(GENDERS)}
-                            </Form.Control>
-                        </Form.Group>
-                    </Form.Row>
-                    <Form.Row>
-                        <Form.Group as={Col} >
-                            <Form.Label>Experience</Form.Label>
-                            <Form.Control type="number" name="experience" value={experience} onChange={this.handleInputChange.bind(this)} />
-                        </Form.Group>
-                    </Form.Row>
-                    <Form.Row>
-                        <Form.Group as={Col} >
-                            <Form.Label>Salary</Form.Label>
-                            <Form.Control type="number" name="salary" value={salary} onChange={this.handleInputChange.bind(this)} />
-                        </Form.Group>
-                    </Form.Row>
-                    <Form.Row>
-                        <Form.Group as={Col}>
-                            <Form.Label>Education</Form.Label>
-                            <Form.Control as="select" name="education" value={education} onChange={this.handleInputChange.bind(this)} >
-                                {renderSelectOptions(EDUCATIONS)}
-                            </Form.Control>
-                        </Form.Group>
-                        <Form.Group as={Col}>
-                            <Form.Label>English level</Form.Label>
-                            <Form.Control as="select" name="englishLevel" value={englishLevel} onChange={this.handleInputChange.bind(this)} >
-                                {renderSelectOptions(ENGLISH_LEVELS)}
-                            </Form.Control>
-                        </Form.Group>
-                        <Form.Group as={Col}>
-                            <Form.Label>Position</Form.Label>
-                            <Form.Control as="select" name="position" value={position} onChange={this.handleInputChange.bind(this)} >
-                                {renderSelectOptions(POSITIONS)}
-                            </Form.Control>
-                        </Form.Group>
-                    </Form.Row>
-                    <Button variant="primary" type="submit" value="Submit">
-                        Submit
-                    </Button>
-                </Form>
-            </div>
+            <Form 
+                onSubmit={this.handleSubmit.bind(this)}
+                render={({ handleSubmit, form, submitting, pristine }) => (
+                    <form className="w-50 m-auto" onSubmit={handleSubmit}>
+                        <div className="row mb-3" component={Form1.Row}>
+                            <div className="col" component={Form1.Group} as={Col} >
+                                <label component={Form1.Label}>Name</label>
+                                <Field name="name">
+                                    {props => (
+                                        <Form1.Control
+                                            name={props.input.name}
+                                            value={props.input.value}
+                                            onChange={this.handleInputChange.bind(this)}
+                                        />
+                                    )}
+                                </Field>
+                            </div>
+                            <div className="col" component={Form.Group} as={Col} >
+                                <label component={Form.Label}>Age</label>
+                                <Field name="age">
+                                    {props => (
+                                        <Form1.Control
+                                            as="select"
+                                            name={props.input.name}
+                                            value={props.input.value}
+                                            onChange={this.handleInputChange.bind(this)}
+                                        >
+                                            {renderSelectOptions(AGES)}
+                                        </Form1.Control>
+                                    )}
+                                </Field>
+                            </div>
+                            <div className="col" component={Form.Group} as={Col} >
+                                <label component={Form.Label}>Gender</label>
+                                <Field name="gender">
+                                    {props => (
+                                        <Form1.Control
+                                            as="select"
+                                            name={props.input.name}
+                                            value={props.input.value}
+                                            onChange={this.handleInputChange.bind(this)}
+                                        >
+                                            {renderSelectOptions(GENDERS)}
+                                        </Form1.Control>
+                                    )}
+                                </Field>
+                            </div>
+                        </div>
+                        <div className="row mb-3" component={Form.Row}>
+                            <div className="col" component={Form.Group} as={Col} >
+                                <label component={Form.Label}>Experience</label>
+                                <Field name="experience">
+                                    {props => (
+                                        <Form1.Control
+                                            name={props.input.name}
+                                            value={props.input.value}
+                                            onChange={this.handleInputChange.bind(this)}
+                                        />
+                                    )}
+                                </Field>
+                            </div>
+                        </div>
+                        <div className="row mb-3" component={Form.Row}>
+                            <div className="col" component={Form.Group} as={Col} >
+                                <label component={Form.Label}>Salary</label>
+                                <Field name="salary">
+                                    {props => (
+                                        <Form1.Control
+                                            name={props.input.name}
+                                            value={props.input.value}
+                                            onChange={this.handleInputChange.bind(this)}
+                                        />
+                                    )}
+                                </Field>
+                            </div>
+                        </div>
+                        <div className="row mb-3    " component={Form.Row}>
+                            <div className="col" component={Form.Group} as={Col} >
+                                <label component={Form.Label}>Education</label>
+                                <Field name="education">
+                                    {props => (
+                                        <Form1.Control
+                                            as="select"
+                                            name={props.input.name}
+                                            value={props.input.value}
+                                            onChange={this.handleInputChange.bind(this)}
+                                        >
+                                            {renderSelectOptions(EDUCATIONS)}
+                                        </Form1.Control>
+                                    )}
+                                </Field>
+                            </div>
+                            <div className="col" component={Form.Group} as={Col} >
+                                <label component={Form.Label}>English level</label>
+                                <Field name="englishLevel">
+                                    {props => (
+                                        <Form1.Control
+                                            as="select"
+                                            name={props.input.name}
+                                            value={props.input.value}
+                                            onChange={this.handleInputChange.bind(this)}
+                                        >
+                                            {renderSelectOptions(ENGLISH_LEVELS)}
+                                        </Form1.Control>
+                                    )}
+                                </Field>
+                            </div>
+                            <div className="col" component={Form.Group} as={Col} >
+                                <label component={Form.Label}>Position</label>
+                                <Field name="position">
+                                    {props => (
+                                        <Form1.Control
+                                            as="select"
+                                            name={props.input.name}
+                                            value={props.input.value}
+                                            onChange={this.handleInputChange.bind(this)}
+                                        >
+                                            {renderSelectOptions(POSITIONS)}
+                                        </Form1.Control>
+                                    )}
+                                </Field>
+                            </div>
+                        </div> 
+                        <button compponent={Button} 
+                            disabled={submitting || pristine} 
+                            onClick={form.reset} 
+                            variant="primary" 
+                            type="submit" 
+                            value="Submit"
+                        >
+                            Submit
+                        </button>
+                    </form>
+                )} 
+            />
         )
     }
 }
