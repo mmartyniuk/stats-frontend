@@ -46,7 +46,7 @@ class Person extends React.Component {
 
     handleInputChange(event) {
         const {type, name, value} = event.target;
-
+        console.log(value)
         this.setState({
             [name]: type === 'number' ? parseInt(value) : value
         })
@@ -58,18 +58,52 @@ class Person extends React.Component {
         return (
             <Form 
                 onSubmit={this.handleSubmit.bind(this)}
+                validate={values => {
+                    const errors = {}
+                    if (!values.name) {
+                        errors.name = 'Required'
+                    }
+                    if (!values.age) {
+                        errors.age = 'Required'
+                    }
+                    if (!values.gender) {
+                        errors.gender = 'Required'
+                    }
+                    if (!values.experience) {
+                        errors.experience = 'Required'
+                    }
+                    if (!values.salary) {
+                        errors.salary = 'Required'
+                    }
+                    if (!values.education) {
+                        errors.education = 'Required'
+                    }
+                    if (!values.englishLevel) {
+                        errors.englishLevel = 'Required'
+                    }
+                    if (!values.position) {
+                        errors.position = 'Required'
+                    } 
+                    else if (values.confirm !== values.password) {
+                        errors.confirm = 'Must match'
+                    }
+                    return errors
+                }}
                 render={({ handleSubmit, form, submitting, pristine }) => (
                     <form className="w-50 m-auto" onSubmit={handleSubmit}>
                         <div className="row mb-3" component={Form1.Row}>
                             <div className="col" component={Form1.Group} as={Col} >
                                 <label component={Form1.Label}>Name</label>
                                 <Field name="name">
-                                    {props => (
-                                        <Form1.Control
-                                            name={props.input.name}
-                                            value={props.input.value}
-                                            onChange={this.handleInputChange.bind(this)}
-                                        />
+                                    {props => ( 
+                                        <div>
+                                            <Form1.Control
+                                                name={props.input.name}
+                                                value={props.input.value}
+                                                onChange={this.handleInputChange.bind(this)}
+                                            />
+                                            {props.meta.error && props.meta.touched && <span>{props.meta.error}</span>}
+                                        </div>
                                     )}
                                 </Field>
                             </div>
@@ -77,14 +111,17 @@ class Person extends React.Component {
                                 <label component={Form.Label}>Age</label>
                                 <Field name="age">
                                     {props => (
-                                        <Form1.Control
-                                            as="select"
-                                            name={props.input.name}
-                                            value={props.input.value}
-                                            onChange={this.handleInputChange.bind(this)}
-                                        >
-                                            {renderSelectOptions(AGES)}
-                                        </Form1.Control>
+                                        <div>
+                                            <Form1.Control
+                                                as="select"
+                                                name={props.input.name}
+                                                value={props.input.value}
+                                                onChange={this.handleInputChange.bind(this)}
+                                            >
+                                                {renderSelectOptions(AGES)}
+                                            </Form1.Control>
+                                            {props.meta.error && props.meta.touched && <span>{props.meta.error}</span>}
+                                        </div>
                                     )}
                                 </Field>
                             </div>
@@ -92,14 +129,17 @@ class Person extends React.Component {
                                 <label component={Form.Label}>Gender</label>
                                 <Field name="gender">
                                     {props => (
-                                        <Form1.Control
-                                            as="select"
-                                            name={props.input.name}
-                                            value={props.input.value}
-                                            onChange={this.handleInputChange.bind(this)}
-                                        >
-                                            {renderSelectOptions(GENDERS)}
-                                        </Form1.Control>
+                                        <div>
+                                            <Form1.Control
+                                                as="select"
+                                                name={props.input.name}
+                                                value={props.input.value}
+                                                onChange={this.handleInputChange.bind(this)}
+                                            >
+                                                {renderSelectOptions(GENDERS)}
+                                            </Form1.Control>
+                                            {props.meta.error && props.meta.touched && <span>{props.meta.error}</span>}
+                                        </div>
                                     )}
                                 </Field>
                             </div>
@@ -109,11 +149,14 @@ class Person extends React.Component {
                                 <label component={Form.Label}>Experience</label>
                                 <Field name="experience">
                                     {props => (
-                                        <Form1.Control
-                                            name={props.input.name}
-                                            value={props.input.value}
-                                            onChange={this.handleInputChange.bind(this)}
-                                        />
+                                        <div>
+                                            <Form1.Control
+                                                name={props.input.name}
+                                                value={props.input.value}
+                                                onChange={this.handleInputChange.bind(this)}
+                                            />
+                                            {props.meta.error && props.meta.touched && <span>{props.meta.error}</span>}
+                                        </div>
                                     )}
                                 </Field>
                             </div>
@@ -123,28 +166,34 @@ class Person extends React.Component {
                                 <label component={Form.Label}>Salary</label>
                                 <Field name="salary">
                                     {props => (
-                                        <Form1.Control
-                                            name={props.input.name}
-                                            value={props.input.value}
-                                            onChange={this.handleInputChange.bind(this)}
-                                        />
+                                        <div>
+                                            <Form1.Control
+                                                name={props.input.name}
+                                                value={props.input.value}
+                                                onChange={this.handleInputChange.bind(this)}
+                                            />
+                                            {props.meta.error && props.meta.touched && <span>{props.meta.error}</span>}
+                                        </div>
                                     )}
                                 </Field>
                             </div>
                         </div>
-                        <div className="row mb-3    " component={Form.Row}>
+                        <div className="row mb-3" component={Form.Row}>
                             <div className="col" component={Form.Group} as={Col} >
                                 <label component={Form.Label}>Education</label>
                                 <Field name="education">
                                     {props => (
-                                        <Form1.Control
-                                            as="select"
-                                            name={props.input.name}
-                                            value={props.input.value}
-                                            onChange={this.handleInputChange.bind(this)}
-                                        >
-                                            {renderSelectOptions(EDUCATIONS)}
-                                        </Form1.Control>
+                                        <div>
+                                            <Form1.Control
+                                                as="select"
+                                                name={props.input.name}
+                                                value={props.input.value}
+                                                onChange={this.handleInputChange.bind(this)}
+                                            >
+                                                {renderSelectOptions(EDUCATIONS)}
+                                            </Form1.Control>
+                                            {props.meta.error && props.meta.touched && <span>{props.meta.error}</span>}
+                                        </div>
                                     )}
                                 </Field>
                             </div>
@@ -152,14 +201,17 @@ class Person extends React.Component {
                                 <label component={Form.Label}>English level</label>
                                 <Field name="englishLevel">
                                     {props => (
-                                        <Form1.Control
-                                            as="select"
-                                            name={props.input.name}
-                                            value={props.input.value}
-                                            onChange={this.handleInputChange.bind(this)}
-                                        >
-                                            {renderSelectOptions(ENGLISH_LEVELS)}
-                                        </Form1.Control>
+                                        <div>
+                                            <Form1.Control
+                                                as="select"
+                                                name={props.input.name}
+                                                value={props.input.value}
+                                                onChange={this.handleInputChange.bind(this)}
+                                            >
+                                                {renderSelectOptions(ENGLISH_LEVELS)}
+                                            </Form1.Control>
+                                            {props.meta.error && props.meta.touched && <span>{props.meta.error}</span>}
+                                        </div>
                                     )}
                                 </Field>
                             </div>
@@ -167,21 +219,23 @@ class Person extends React.Component {
                                 <label component={Form.Label}>Position</label>
                                 <Field name="position">
                                     {props => (
-                                        <Form1.Control
-                                            as="select"
-                                            name={props.input.name}
-                                            value={props.input.value}
-                                            onChange={this.handleInputChange.bind(this)}
-                                        >
-                                            {renderSelectOptions(POSITIONS)}
-                                        </Form1.Control>
+                                        <div>
+                                            <Form1.Control
+                                                as="select"
+                                                name={props.input.name}
+                                                value={props.input.value}
+                                                onChange={this.handleInputChange.bind(this)}
+                                            >
+                                                {renderSelectOptions(POSITIONS)}
+                                            </Form1.Control>
+                                            {props.meta.error && props.meta.touched && <span>{props.meta.error}</span>}
+                                        </div>
                                     )}
                                 </Field>
                             </div>
                         </div> 
                         <button compponent={Button} 
                             disabled={submitting || pristine} 
-                            onClick={form.reset} 
                             variant="primary" 
                             type="submit" 
                             value="Submit"
