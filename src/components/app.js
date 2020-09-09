@@ -17,10 +17,10 @@ function App() {
             <div>
                 <ul className="list-unstyled">
                     <li>
-                        <Link  class="badge badge-success my-2 w-25" to="/"><h1 class="h3">Statistics</h1></Link>
+                        <Link className="badge badge-success my-2 w-25" to="/"><h1 className="h3">Statistics</h1></Link>
                     </li>
                     <li>
-                        <Link class="badge badge-warning my-2 w-25" to="/form"><h1 class="h3">Form</h1></Link>
+                        <Link className="badge badge-warning my-2 w-25" to="/form"><h1 className="h3">Form</h1></Link>
                     </li>
                 </ul>
                 <hr />
